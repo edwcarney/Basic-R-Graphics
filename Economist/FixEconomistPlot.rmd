@@ -7,14 +7,11 @@ output: html_document
 
 Let's see if we can fix the graph from <i>The Economist</i>, adding some color and fiddling with the details a bit.
 
-Here's another look at it.
-
 <img src='Economist.gif'>
 <p>From <i>The Economist</i>, 14 May 2011, "Special Report on International Banking"
 
-The graphic used to illustrate the size of financial markets in the Special Report on International Banking (14 May 2011) was misleading. The intention, clearly, was to illustrate the proportion of each market which was assignable to Equity, Debt, and Bank Assets by the vertical extent of the colored regions. The height was intended to be proportional to the size of the markets (58, 61, and 89 trillion dollars, for Asia, the U.S. and the E.U., respectively).
+This graphic, used to illustrate the size of financial markets in the Special Report on International Banking (14 May 2011), was misleading. The intention, clearly, was to illustrate the proportion of each market which was assignable to Equity, Debt, and Bank Assets by the vertical extent of the colored regions. The height was intended to be proportional to the size of the markets (58, 61, and 89 trillion dollars, for Asia, the U.S. and the E.U., respectively).
  
-
 There are a couple of problems. The hue and contrast choice is poor, especially for persons with certain types of colorblindness; I am one of these. Another problem is that the area of the rectangle which circumscribes the $ goes up out of proportion to the value of the size of the market. This gives a distorted impression of the relative size of the E.U. financial markets compared to both the Asia and U.S. markets. I've drawn in rectangles, below, to show what I mean.
 
 <img src='EconomistLines.gif'>
@@ -58,7 +55,6 @@ EU=c(46.4,32.8,10.0)
 
 markets=cbind(Asia,US,EU)
 ```
-
 Now, we'll try a different <b>barplot()</b>. We just turn the whole thing on its side and add colors&mdash;viz. <i>skyblue</i>,<i>salmon</i>, and <i>sienna</i>.
 
 ```{r}
@@ -66,7 +62,6 @@ par(las=1,mar=c(5,5,5,8),xpd=NA)
 bp <- barplot(markets,horiz=T,width=c(.5,.5,.5),space=.5,beside=F,
     col=c('skyblue','salmon','sienna'),names.arg=c('Asia','U.S.','E.U.'),axes=F)
 ```
-
 Now, we'll add values to the segments within each bar + a title 
 
 ```{r}
@@ -86,7 +81,6 @@ text(EU[1]+EU[2]+(EU[3]/2),bp[3],paste(EU[3]),adj=c(0.5,.5),cex=cexval)
 text(45,2.5,'Size of Financial Markets, 2009',cex=1.4)
 
 ```
-
 We can add a legend for the colors. We can also add the totals as separate "legends" at the right.
 
 ```{r}
