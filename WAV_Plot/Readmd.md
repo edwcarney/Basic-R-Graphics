@@ -6,4 +6,6 @@ Click <a href="https://rawgit.com/edwcarney/Basic-R-Graphics/master/WAV_Plot/Wav
 
 ### WAVBinary.R and WAVtuneR.R
 
-These two files show how to access WAV data using either ordinary file functions [<i>file()</i>, <i>seek()</i>, <i>readBin()</i>, and <i>close()</i>] or with the tuneR package
+These two files show how to access WAV data using either ordinary file functions [<i>file()</i>, <i>seek()</i>, <i>readBin()</i>, and <i>close()</i>] or with the tuneR package.
+
+The RMarkdown file has hidden the code that obtained the WAV data from the file. It was read up using the method shown in WAVBinary.R.
