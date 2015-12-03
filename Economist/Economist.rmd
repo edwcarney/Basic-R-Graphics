@@ -1,0 +1,101 @@
+---
+title: "World Financial Markets Graph"
+author: "Edward Carney"
+date: "Friday, December 05, 2014"
+output: html_document
+---
+
+Let's see if we can fix the graph from <i>The Economist</i>.
+
+Here's another look at it.
+
+<img src='Economist.gif'>
+<p>From <i>The Economist</i>, 14 May 2011, "Special Report on International Banking"
+
+First, let's put the data into a matrix.
+
+```{r}
+Asia=c(27.0,17.6,13.1)
+US=c(14.2,31.6,15.1)
+EU=c(46.4,32.8,10.0)
+
+markets=cbind(Asia,US,EU)
+```
+
+Now, we'll try a default <b>barplot()</b>.
+
+```{r}
+par(las=1,mar=c(5,5,5,8),xpd=NA)
+bp <- barplot(markets,las=1,ylab='Market size ($trillion)')
+```
+
+Now, we'll add values to the segments within each bar + totals for each region.
+
+Note, we have to change text color for contrast.
+
+```{r}
+par(las=1,mar=c(5,5,5,8),xpd=NA)
+# the bp object contains the x values for the center of the three bars
+# we can us them in the text() calls
+bp <- barplot(markets,las=1,ylab='Market size ($trillion)',axes=F,ylim=c(0,100))
+# we don't need a y axis, but this is how you could add it
+# axis(2,at=seq(0,100,10),labels=as.character(seq(0,100,10)))
+# Asia
+# place the text centered on the point specified using adj=c(0.5,0.5)
+# note, that we can place the text using the data value for each of
+# the three categories and dividing the topmost by 2
+# the paste() call turns the number into text.
+text(bp[1],Asia[1]/2,paste(Asia[1]),
+     col='white',adj=c(0.5,.5))
+text(bp[1],Asia[1]+(Asia[2]/2),paste(Asia[2]),
+     col='black',adj=c(0.5,.5))
+text(bp[1],Asia[1]+Asia[2]+(Asia[3]/2),paste(Asia[3]),
+     col='black',adj=c(0.5,.5))
+text(bp[1],Asia[1]+Asia[2]+Asia[3]+10,paste(sum(markets[,1])),
+     col='black',adj=c(0.5,.5))
+# United States
+text(bp[2],US[1]/2,paste(US[1]),
+     col='white',adj=c(0.5,.5))
+text(bp[2],US[1]+(US[2]/2),paste(US[2]),
+     col='black',adj=c(0.5,.5))
+text(bp[2],US[1]+US[2]+(US[3]/2),paste(US[3]),
+     col='black',adj=c(0.5,.5))
+text(bp[2],US[1]+US[2]+US[3]+10,paste(sum(markets[,2])),
+     col='black',adj=c(0.5,.5))
+# European Union
+text(bp[3],EU[1]/2,paste(EU[1]),
+     col='white',adj=c(0.5,.5))
+text(bp[3],EU[1]+(EU[2]/2),paste(EU[2]),
+     col='black',adj=c(0.5,.5))
+text(bp[3],EU[1]+EU[2]+(EU[3]/2),paste(EU[3]),
+     col='black',adj=c(0.5,.5))
+text(bp[3],EU[1]+EU[2]+EU[3]+10,paste(sum(markets[,3])),
+     col='black',adj=c(0.5,.5))
+```
+
+Add a legend and a title.
+
+Now, we can draw some conclusions. For example, look at the debt segment across the regions. Notice that the proportion of debt in U.S. financial markets is larger than for Asia or Europe. In fact, the E.U. and the U.S. have comparable debt amounts and the U.S. financial markets are 32% smaller overall. U.S. markets rely more on equity (24.8% to the E.U.'s 11.2%) and have smaller proportions of bank assets (23.3% to the E.U.'s 52%). There is a lot here. Even without knowing the exact proportions the picture is quite clear.
+
+```{r echo=FALSE}
+par(las=1,mar=c(5,5,5,8),xpd=NA)
+bp <- barplot(markets,las=1,ylab='Market size ($trillion)',
+              axes=F,ylim=c(0,100),
+              col=c('gray25','gray60','gray90'))
+# axis(2,at=seq(0,100,10),labels=as.character(seq(0,100,10)))
+text(bp[1],Asia[1]/2,paste(Asia[1]),col='white',adj=c(0.5,.5))
+text(bp[1],Asia[1]+(Asia[2]/2),paste(Asia[2]),col='black',adj=c(0.5,.5))
+text(bp[1],Asia[1]+Asia[2]+(Asia[3]/2),paste(Asia[3]),col='black',adj=c(0.5,.5))
+text(bp[1],Asia[1]+Asia[2]+Asia[3]+10,paste(sum(markets[,1])),col='black',adj=c(0.5,.5))
+text(bp[2],US[1]/2,paste(US[1]),col='white',adj=c(0.5,.5))
+text(bp[2],US[1]+(US[2]/2),paste(US[2]),col='black',adj=c(0.5,.5))
+text(bp[2],US[1]+US[2]+(US[3]/2),paste(US[3]),col='black',adj=c(0.5,.5))
+text(bp[2],US[1]+US[2]+US[3]+10,paste(sum(markets[,2])),col='black',adj=c(0.5,.5))
+text(bp[3],EU[1]/2,paste(EU[1]),col='white',adj=c(0.5,.5))
+text(bp[3],EU[1]+(EU[2]/2),paste(EU[2]),col='black',adj=c(0.5,.5))
+text(bp[3],EU[1]+EU[2]+(EU[3]/2),paste(EU[3]),col='black',adj=c(0.5,.5))
+text(bp[3],EU[1]+EU[2]+EU[3]+10,paste(sum(markets[,3])),col='black',adj=c(0.5,.5))
+legend(bp[3]+1.3,80,legend=c('Equity','Debt','Bank Assets'),fill=rev(c('gray25','gray60','gray90')),
+       horiz=F,xjust=.5,cex=.8)
+title('Size of Financial Markets, 2009')
+```
