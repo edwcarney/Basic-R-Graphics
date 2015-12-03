@@ -2,7 +2,7 @@
 
 The basic idea is to expand the space in the direction of the ordinate and adjust the data to appear in the right place.
 
-Click <a href="https://rawgit.com/edwcarney/Basic-R-Graphics/master/WAV_Plot/Wav_Loudness.html" target="_blank">here</a> to view the RMarkdown file."
+Click <a href="https://rawgit.com/edwcarney/Basic-R-Graphics/master/WAV_Plot/Wav_Loudness.html" target="_blank">here</a> to view the RMarkdown file.
 
 ### WAVBinary.R and WAVtuneR.R
 
