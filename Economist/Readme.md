@@ -1,7 +1,5 @@
-## JER three-part plot
+## Economist graphic repair
 
-This plot requires that a three-row plot be adjusted to get the lines that cross from one to the other to butt up against each other.
+This plot is a stab at fixing an egregiously bad plot from <i>The Economist</i>. This happens surprisingly often for a newspaper with such a great reputation.
 
-The RMarkdown file for Figure 1 is <a href="https://rawgit.com/edwcarney/Basic-R-Graphics/master/JER/Three_Part_Fig1.html" target="_blank">here</a>.
-
-The RMarkdown file for Figure 2 is <a href="https://rawgit.com/edwcarney/Basic-R-Graphics/master/JER/Three_Part_Fig2.html" target="_blank">here</a>.
+The RMarkdown HTML file for this figure is <a href="https://rawgit.com/edwcarney/Basic-R-Graphics/master/Economist/FixEconomistPlot.html" target="_blank">here</a>.
